@@ -1,5 +1,6 @@
 <template>
-  <div class="card-image">
+  <div class="section">
+    <h1>Details</h1>
   </div>
 </template>
 <script>
@@ -7,4 +8,5 @@
   }
 </script>
 <style scoped>
+
 </style>

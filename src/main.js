@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Vuefire from 'vuefire'
+import firebase from '../service/firebase'
+
+Vue.use(Vuefire)
 
 Vue.config.productionTip = false
 
@@ -11,5 +15,8 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  firebase: {
+    dish: firebase.database.ref('dish')
+  }
 })

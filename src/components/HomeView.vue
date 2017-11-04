@@ -1,14 +1,12 @@
 <template>
-  <ul class="list">
-  </ul>
+  <div class="section">
+    <h1>Home</h1>
+  </div>
 </template>
 <script>
 export default {
 }
 </script>
 <style scoped>
-  .list {
-    width: 100%;
-    padding: 0;
-  }
+
 </style>
