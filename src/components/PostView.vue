@@ -30,15 +30,6 @@
 </template>
 <script>
   import firebase from '../../service/firebase'
-  // import Vue from 'vue'
-  // import VueToastr from '@deveodk/vue-toastr'
-  // import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
-
-  // Vue.use(VueToastr, {
-  //   defaultPosition: 'toast-bottom-center',
-  //   defaultType: 'info',
-  //   defaultTimeout: 1000
-  // })
 
   export default {
     data () {
