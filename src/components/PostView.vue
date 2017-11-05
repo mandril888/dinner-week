@@ -17,7 +17,7 @@
       <div class="field">
         <label class="label">Dish info</label>
         <div class="control">
-          <textarea class="textarea" placeholder="Describes the dish" v-model="dishInfo"></textarea>
+          <textarea class="textarea" placeholder="Describe the dish" v-model="dishInfo"></textarea>
         </div>
       </div>
       <div class="field is-grouped">
@@ -30,6 +30,16 @@
 </template>
 <script>
   import firebase from '../../service/firebase'
+  // import Vue from 'vue'
+  // import VueToastr from '@deveodk/vue-toastr'
+  // import '@deveodk/vue-toastr/dist/@deveodk/vue-toastr.css'
+
+  // Vue.use(VueToastr, {
+  //   defaultPosition: 'toast-bottom-center',
+  //   defaultType: 'info',
+  //   defaultTimeout: 1000
+  // })
+
   export default {
     data () {
       return {
@@ -38,14 +48,26 @@
       }
     },
     methods: {
-      postDish (a, b) {
-        if (a && b) {
+      succMsg () {
+        this.$toastr('success', 'Your dish has benn added', 'Congratulatios!')
+      },
+      errMsg () {
+        this.$toastr('error', 'An error ocurred', 'Atention!')
+      },
+      postDish (dishName, dishInfo) {
+        var that = this
+        if (dishName && dishInfo) {
           firebase.database.ref('dish').push({
-            'dishName': a,
-            'dishInfo': b,
+            'dishName': dishName,
+            'dishInfo': dishInfo,
             'created_at': new Date().getTime()
           })
-            .then(this.$router.push('/'))
+            .then(function (data) {
+              that.succMsg()
+            })
+            .catch(function (data) {
+              that.errMsg()
+            })
         }
       }
     }
