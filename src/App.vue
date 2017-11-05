@@ -9,6 +9,7 @@
       <span class="mdl-layout-title">Dinner Week</span>
       <nav class="mdl-navigation">
         <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
+        <router-link class="mdl-navigation__link" to="/detail" @click.native="hideMenu">Details</router-link>
         <router-link class="mdl-navigation__link" to="/post" @click.native="hideMenu">Post a dish</router-link>
       </nav>
     </div>

@@ -45,6 +45,9 @@
       errMsg () {
         this.$toastr('error', 'An error ocurred', 'Atention!')
       },
+      infoMsg () {
+        this.$toastr('info', 'You miss some filds', 'Atention!')
+      },
       postDish (dishName, dishInfo) {
         var that = this
         if (dishName && dishInfo) {
@@ -55,10 +58,13 @@
           })
             .then(function (data) {
               that.succMsg()
+              that.dishName = that.dishInfo = ''
             })
             .catch(function (data) {
               that.errMsg()
             })
+        } else {
+          that.infoMsg()
         }
       }
     }
