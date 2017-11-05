@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <h1>Post a dish</h1>
-    <form @submit.prevent="postDish(dishName, dishInfo)">
+    <form @submit.prevent="postDish(dishName, dishInfo, dishType)">
       <div class="field">
         <label class="label">Dish name</label>
         <div class="control has-icons-left has-icons-right">
@@ -20,6 +20,20 @@
           <textarea class="textarea" placeholder="Describe the dish" v-model="dishInfo"></textarea>
         </div>
       </div>
+      <div class="field">
+        <label class="label">Type</label>
+        <div class="control">
+          <div class="select">
+            <select v-model="dishType">
+              <option disabled selected value>Select one please</option>
+              <option>First</option>
+              <option>Second</option>
+              <option>Both</option>
+              <option>Desert</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="field is-grouped">
         <div class="control">
           <button class="button is-primary">POST DISH</button>
@@ -28,6 +42,7 @@
     </form>
   </section>
 </template>
+
 <script>
   import firebase from '../../service/firebase'
 
@@ -35,7 +50,8 @@
     data () {
       return {
         dishName: '',
-        dishInfo: ''
+        dishInfo: '',
+        dishType: ''
       }
     },
     methods: {
@@ -48,17 +64,18 @@
       infoMsg () {
         this.$toastr('info', 'You miss some filds', 'Atention!')
       },
-      postDish (dishName, dishInfo) {
+      postDish (dishName, dishInfo, dishType) {
         var that = this
-        if (dishName && dishInfo) {
+        if (dishName && dishInfo && dishType) {
           firebase.database.ref('dish').push({
             'dishName': dishName,
             'dishInfo': dishInfo,
+            'dishType': dishType,
             'created_at': new Date().getTime()
           })
             .then(function (data) {
               that.succMsg()
-              that.dishName = that.dishInfo = ''
+              that.dishName = that.dishInfo = that.dishType = ''
             })
             .catch(function (data) {
               that.errMsg()
@@ -70,6 +87,7 @@
     }
   }
 </script>
+
 <style scoped>
 
 </style>
